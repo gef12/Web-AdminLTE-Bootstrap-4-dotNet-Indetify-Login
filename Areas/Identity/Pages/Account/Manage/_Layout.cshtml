@@ -1,22 +1,36 @@
 ﻿@{
-    Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Manage your account</h1>
+    <div style="align-content:center;text-align: center">
+        <h4>Gerenciar sua conta</h4>
+    </div>
+    
 
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
+
+
+
+<div class="col-md-12" style="align-content:center">
+    <div>
+        <h5>Alterar as configurações da sua conta</h5>
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
+                <partial name="_ManageNav" />
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
         </div>
     </div>
 </div>
 
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
 @section Scripts {
     @RenderSection("Scripts", required: false)
 }
