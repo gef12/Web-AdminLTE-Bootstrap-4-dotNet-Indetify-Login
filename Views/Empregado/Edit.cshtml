@@ -1,0 +1,52 @@
+﻿
+ 
+
+            @model Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Models.Empregado
+
+            @{
+                ViewData["Title"] = "Edit";
+            }
+
+            <h1>Editar</h1>
+
+            <h4>Empregado</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="EmpregadoId" />
+                        <div class="form-group">
+                            <label asp-for="NameCompleto" class="control-label"></label>
+                            <input asp-for="NameCompleto" class="form-control" />
+                            <span asp-validation-for="NameCompleto" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EmpCode" class="control-label"></label>
+                            <input asp-for="EmpCode" class="form-control" />
+                            <span asp-validation-for="EmpCode" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Posicao" class="control-label"></label>
+                            <input asp-for="Posicao" class="form-control" />
+                            <span asp-validation-for="Posicao" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LocalizacaoTrabalho" class="control-label"></label>
+                            <input asp-for="LocalizacaoTrabalho" class="form-control" />
+                            <span asp-validation-for="LocalizacaoTrabalho" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Salvar" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <a asp-action="Index">Voltar</a>
+            </div>
+
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
