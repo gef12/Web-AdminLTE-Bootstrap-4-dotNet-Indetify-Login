@@ -1,0 +1,56 @@
+﻿
+
+
+        @model IEnumerable<Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Models.Empregado>
+
+        @{
+            ViewData["Title"] = "Index";
+        }
+
+        <h4>Empregados</h4>
+        <hr />
+
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NameCompleto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmpCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Posicao)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LocalizacaoTrabalho)
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameCompleto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmpCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Posicao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LocalizacaoTrabalho)
+                        </td>
+                        <td>
+                            
+                            <a asp-action="Details" asp-route-id="@item.EmpregadoId"><i class="fa fa-book" aria-hidden="true"></i> Detalhes</a> |
+                      
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>

@@ -40,9 +40,12 @@ namespace Web_AdminLTE_Bootstrap_4_dotNet_Indetify
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
          
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+    
 
 
             services.Configure<IdentityOptions>(options =>
@@ -72,7 +75,7 @@ namespace Web_AdminLTE_Bootstrap_4_dotNet_Indetify
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             //injetando dependecias para realizar a conexao do BD Sql
-            services.AddDbContext<EmpregadoContexto>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
         }
 

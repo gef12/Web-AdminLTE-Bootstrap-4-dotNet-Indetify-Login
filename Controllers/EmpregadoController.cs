@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Data;
 using Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Models;
 
 namespace Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Controllers
@@ -13,9 +14,9 @@ namespace Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Controllers
     [Authorize]
     public class EmpregadoController : Controller
     {
-        private readonly EmpregadoContexto _context;
+        private readonly ApplicationDbContext _context;
 
-        public EmpregadoController(EmpregadoContexto context)
+        public EmpregadoController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -23,7 +24,15 @@ namespace Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Controllers
         // GET: Empregado
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Empregado.ToListAsync());
+            if (User.IsInRole("Admin"))
+            {
+                return View(await _context.Empregado.ToListAsync());
+            }
+            else
+            {
+                return View("ReadOnly", await _context.Empregado.ToListAsync());
+            }
+                
         }
 
         // GET: Empregado/Details/5
@@ -44,6 +53,7 @@ namespace Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Controllers
             return View(empregado);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Empregado/Create
         public IActionResult AddOrEdit(int id=0)
         {
@@ -55,6 +65,7 @@ namespace Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Empregado/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -76,6 +87,7 @@ namespace Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Controllers
             return View(empregado);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Empregado/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -92,6 +104,7 @@ namespace Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Controllers
             return View(empregado);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Empregado/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -127,6 +140,7 @@ namespace Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Controllers
             return View(empregado);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Empregado/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -154,6 +168,7 @@ namespace Web_AdminLTE_Bootstrap_4_dotNet_Indetify.Controllers
             */
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Empregado/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
